@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <title>Cadastro</title>
+</head>
+<body>
+    <h1>Cadastro</h1>
+
+    <form id="form-cadastro">
+        
+        <input type="text" class="form-input" id="name" placeholder="nome" required>
+        <input type="email" class="form-input" id="gmail" placeholder="gmail" required>
+        <input type="password" class="form-input" id="senha" placeholder="senha" required>
+    
+        <div>
+        <button class="form-button f-b-1"id="button-login">Realizar login</button>
+        <button class="form-button f-b-2" id="button-cadastrar" type="button">Cadastrar</button> 
+        </div>
+        
+    </form>
+    
+    <div class="colocarCodigo" id="div-do-codigo">
+        <input type="text" class="form-input form-codigo-input" id="codigo" placeholder="coloque aqui o codigo.">
+        <button onclick="enviar()">Enviar</button>
+        <button onclick="fechar()">email errado?</button>
+    </div>
+    
+    <script src="js/cadastro.js"></script>
+</body>
+</html>

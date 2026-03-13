@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    text-align: center;
+    background-color: rgb(28, 26, 26);
+    color: rgb(255, 255, 255);
+
+
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+}
+
+.form-input{
+    height: 40px;
+    padding: 5px;
+    margin: 2px;
+
+    border-radius: 2px;
+    border-width: 0.5px;
+    border-color: rgb(223, 223, 223);
+    border-style:groove;
+}
+
+.form-button{
+    border:none;
+    background: none;
+
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 30px;
+    padding: 10px 30px;
+}
+
+.f-b-1{
+    color: blue;
+}
+
+.f-b-2{
+    background-color: rgb(84, 236, 70);
+    color:white;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.colocarCodigo{
+    
+    display: none;
+    justify-content: center;
+
+    background-color: aliceblue;
+
+    padding: 100px;
+    margin-top: 100px;
+}
+
+.form-codigo-input{
+    border: none;
+    background-color: white;
+    padding: 10px;
+}
+
+
+#form-cadastro {
+    
+
+    background-color: aliceblue;
+    border-radius: 2px;
+
+    display: flex;
+    flex-direction: column  ;
+
+    width: 300px;
+    padding: 30px 40px;
+    padding-top: 50px;
+
+    margin-top: 30px;
+}
+
