@@ -6,7 +6,7 @@ const { send } = require('process');
 
 
 const app = express();
-const port = 8000;
+const port = 3000;
 
 
 
@@ -23,9 +23,8 @@ const transporter = nodemailer.createTransport({
 app.use(express.static("public"));
 app.use(express.json());
 
-app.get('/', (req,res) => {
+app.get('/cadastro', (req,res) => {
     res.sendFile(path.join(__dirname, 'views','cadastro.html'));
-    console.log(req.body)
 });
 
 app.post("/enviar-email", (req,res) => {
@@ -38,9 +37,8 @@ app.post("/enviar-email", (req,res) => {
         if (err){
             console.log(err);
         }
-        res.send('ok')
+    });
 
-    })
     const mailOptions = {
         from: "henriquedosantos206@gmail.com",
         to: `${gmail}`,
@@ -95,6 +93,32 @@ app.post("/verificar-gmail",(req,res) => {
     })
 });
 
+
+app.get('/login', (req,res) => {
+    res.sendFile(path.join(__dirname, 'views', 'login.html'));
+
+});
+
+app.post("/verificar-senha", (req,res) => {
+    const nome = req.body.nome;
+    const senha = req.body.senha;
+
+    const sql = "SELECT nome,senha FROM usuario WHERE nome = ? and senha = ?";
+
+    db.query(sql,[nome,senha], (err,result) =>{
+        if (err){
+            console.log("sql error : " + err);
+            return;
+        }
+
+        if (result.length > 0){
+            res.send('login com sucesso!');
+        }else {
+            res.send('Nome do Usuario ou Senha está incorreto.');
+        }
+        
+    });
+});
 
 app.listen(port,(err) => {
     if(err) {
