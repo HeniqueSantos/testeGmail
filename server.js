@@ -3,25 +3,28 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const db = require("./db");
 const { send } = require('process');
-
+const session = require("express-session");
 
 const app = express();
-const port = 3000;
-
-
-
+const port = 8080;
 
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
         user: "henriquedosantos206@gmail.com",
-        pass: "zobh fxhe lump vmgd"
+        pass: "pkxf puto oftn tiwi"
     }
 });
 
-
 app.use(express.static("public"));
 app.use(express.json());
+
+app.use(session({
+    secret: "segredo-super-seguro",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 3600000 }
+}));
 
 app.get('/cadastro', (req,res) => {
     res.sendFile(path.join(__dirname, 'views','cadastro.html'));
@@ -94,7 +97,7 @@ app.post("/verificar-gmail",(req,res) => {
 });
 
 
-app.get('/login', (req,res) => {
+app.get("/login", (req,res) => {
     res.sendFile(path.join(__dirname, 'views', 'login.html'));
 
 });
@@ -103,7 +106,7 @@ app.post("/verificar-senha", (req,res) => {
     const nome = req.body.nome;
     const senha = req.body.senha;
 
-    const sql = "SELECT nome,senha FROM usuario WHERE nome = ? and senha = ?";
+    const sql = "SELECT * FROM usuario WHERE nome = ? and senha = ?";
 
     db.query(sql,[nome,senha], (err,result) =>{
         if (err){
@@ -112,13 +115,37 @@ app.post("/verificar-senha", (req,res) => {
         }
 
         if (result.length > 0){
-            res.send('login com sucesso!');
+
+            req.session.usuario = result[0].nome
+            res.redirect("/home")
+            
         }else {
+
             res.send('Nome do Usuario ou Senha está incorreto.');
         }
         
     });
 });
+
+app.get("/usuarios", (req,res) => {
+    if (!req.session.usuario || req.session.usuario === undefined){
+        res.status(500).send('cagou')
+        return;
+    }
+
+    res.json({
+        nome: req.session.usuario
+    });
+});
+
+app.get("/home", (req,res) => {
+    if (!req.session.usuario){
+        res.redirect("/login");
+        return;
+    }
+    res.sendFile(path.join(__dirname, "views", "home.html"));  
+});
+
 
 app.listen(port,(err) => {
     if(err) {

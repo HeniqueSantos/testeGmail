@@ -24,5 +24,7 @@ function login(){
         })
     })
     .then(res => res.text())
-    .then(data => (data));
+    .then(data => {
+            window.location.href = "/home";
+    });
 }
