@@ -1,0 +1,33 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+body {
+    font-family: "Roboto Mono", monospace;
+    background-color: black;
+    color: white;
+}
+
+#content{
+    display: flex;
+}
+
+#sidebar-header {
+    position: fixed;
+    border: 1px solid gray;
+    height: 1980px;
+    width: 100px;;
+}
+
+#sidebar-button {
+    background-color: none;
+}
+
+#principal{
+    border: 2px solid red;
+    margin: 20px 0px 0px 200px;
+    width: 0px auto;
+}
